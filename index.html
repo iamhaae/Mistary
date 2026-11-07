@@ -14,6 +14,117 @@
 <body class="page-invitation">
   <div class="veil is-on"></div>
 
+  <!-- ============ 공용 도안 (봉투·편지지·봉인이 함께 사용) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- 봉인 밀랍 그라디언트 (붉은색 유지) -->
+      <radialGradient id="sealGrad" cx="36%" cy="30%" r="80%">
+        <stop offset="0" stop-color="#9a3240"/>
+        <stop offset=".55" stop-color="#6a1a26"/>
+        <stop offset="1" stop-color="#3d0d15"/>
+      </radialGradient>
+      <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#f6e2a8"/>
+        <stop offset=".55" stop-color="#d4aa5a"/>
+        <stop offset="1" stop-color="#9a7234"/>
+      </linearGradient>
+
+      <!-- 엠보싱 꽃무늬 원본 (한 타일 140x140) -->
+      <g id="floralArt" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3">
+        <!-- 장미 -->
+        <circle cx="42" cy="42" r="16"/>
+        <circle cx="42" cy="42" r="10.5"/>
+        <path d="M42 42 m-4.5 0 a4.5 4.5 0 1 1 4.5 4.5"/>
+        <path d="M27 35 C31 24 46 22 55 31"/>
+        <path d="M29 52 C36 60 50 60 56 49"/>
+        <!-- 잎 -->
+        <path d="M62 54 C74 45 88 47 95 56 C84 65 70 65 62 54Z"/>
+        <path d="M64 55 L92 56"/>
+        <path d="M24 22 C16 14 9 14 4 9 C14 7 22 12 24 22Z"/>
+        <path d="M24 22 L8 11"/>
+        <!-- 줄기 -->
+        <path d="M57 41 C72 30 90 32 108 30"/>
+        <path d="M40 58 C42 78 50 92 60 102"/>
+        <!-- 작은 꽃 -->
+        <circle cx="112" cy="30" r="3"/>
+        <circle cx="112" cy="22" r="3.4"/><circle cx="119.6" cy="27.6" r="3.4"/>
+        <circle cx="116.7" cy="36.6" r="3.4"/><circle cx="107.3" cy="36.6" r="3.4"/><circle cx="104.4" cy="27.6" r="3.4"/>
+        <!-- 두번째 장미 -->
+        <circle cx="104" cy="102" r="14"/>
+        <circle cx="104" cy="102" r="9"/>
+        <path d="M104 102 m-4 0 a4 4 0 1 1 4 4"/>
+        <path d="M91 96 C95 87 108 86 116 94"/>
+        <!-- 아래 잎 -->
+        <path d="M30 108 C38 100 50 102 56 110 C48 118 36 118 30 108Z"/>
+        <path d="M32 109 L54 110"/>
+        <path d="M76 126 C84 120 96 122 100 130 C92 136 82 136 76 126Z"/>
+        <path d="M120 66 C128 60 134 64 134 72 C128 76 122 74 120 66Z"/>
+        <path d="M8 84 C16 78 22 82 22 90 C16 94 10 92 8 84Z"/>
+      </g>
+      <pattern id="floralTex" width="140" height="140" patternUnits="userSpaceOnUse">
+        <use href="#floralArt" stroke="rgba(84,62,28,.34)" transform="translate(1.5 1.5)"/>
+        <use href="#floralArt" stroke="rgba(255,255,255,.85)"/>
+      </pattern>
+
+      <!-- 모서리 장식 (왼쪽 위 기준, 70x70) -->
+      <symbol id="flourish" viewBox="0 0 70 70" overflow="visible">
+        <g id="flArm" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round">
+          <path d="M10 10 C24 7 42 8 55 15 C61 18.5 60 27 53.5 27.5 C47.5 28 45.5 21.5 50.5 20.5"/>
+          <path d="M30 8.6 C31 17 37 22 43 19.5 C46.5 18 45.5 13.5 42 14.2"/>
+          <path d="M19 9 C19.5 15 24 18.5 28 17"/>
+        </g>
+        <use href="#flArm" transform="matrix(0 1 1 0 0 0)"/>
+        <path d="M11 11 C19 11 21 19 16 23.5 C11.5 20 9.5 15.5 11 11Z" fill="currentColor"/>
+        <circle cx="26" cy="26" r="1.5" fill="currentColor"/>
+      </symbol>
+
+      <!-- 백합 문양 -->
+      <symbol id="fleur" viewBox="-12 -12 24 24" overflow="visible">
+        <g fill="currentColor">
+          <path d="M0 -10.5 C3.4 -6.2 3.4 -1.6 0 3.2 C-3.4 -1.6 -3.4 -6.2 0 -10.5Z"/>
+          <path d="M-1.2 2.4 C-5.4 1.4 -10.6 -2 -8.6 -7.4 C-5.8 -4.8 -3.6 -2.2 -1.2 -1Z"/>
+          <path d="M1.2 2.4 C5.4 1.4 10.6 -2 8.6 -7.4 C5.8 -4.8 3.6 -2.2 1.2 -1Z"/>
+          <rect x="-5.8" y="3.4" width="11.6" height="1.7" rx=".85"/>
+          <path d="M0 6 C-2.1 8 -2.5 10 0 11.5 C2.5 10 2.1 8 0 6Z"/>
+        </g>
+      </symbol>
+
+      <!-- 봉투 전체 도안 (700x400) : 엠보싱 + 이중 테두리 + 모서리 + 백합 -->
+      <symbol id="envDeco" viewBox="0 0 700 400" overflow="visible">
+        <rect width="700" height="400" fill="url(#floralTex)" opacity=".85"/>
+
+        <!-- 접힌 선 -->
+        <path d="M0 400 L350 222 L700 400" fill="none" stroke="rgba(70,50,20,.26)" stroke-width="1.2"/>
+        <path d="M0 29 L350 225 L700 29" fill="none" stroke="rgba(50,34,10,.07)" stroke-width="9"/>
+        <path d="M0 28 L350 224 L700 28" fill="none" stroke="rgba(50,34,10,.12)" stroke-width="4"/>
+        <path d="M0 26 L350 222 L700 26" fill="none" stroke="rgba(70,50,20,.38)" stroke-width="1.1"/>
+
+        <g fill="none" stroke="currentColor">
+          <rect x="16" y="16" width="668" height="368" stroke-width="1.5"/>
+          <rect x="24" y="24" width="652" height="352" stroke-width=".8"/>
+        </g>
+
+        <!-- 가장자리 중앙 백합 (선을 끊어주는 받침 포함) -->
+        <g style="color:inherit">
+          <rect x="322" y="12" width="56" height="24" fill="#e1d5b5"/>
+          <rect x="322" y="364" width="56" height="24" fill="#d4c6a1"/>
+          <rect x="8" y="176" width="24" height="48" fill="#e1d5b5"/>
+          <rect x="668" y="176" width="24" height="48" fill="#e1d5b5"/>
+          <use href="#fleur" x="338" y="8" width="24" height="24"/>
+          <g transform="rotate(180 350 380)"><use href="#fleur" x="338" y="368" width="24" height="24"/></g>
+          <g transform="rotate(-90 20 200)"><use href="#fleur" x="8" y="188" width="24" height="24"/></g>
+          <g transform="rotate(90 680 200)"><use href="#fleur" x="668" y="188" width="24" height="24"/></g>
+        </g>
+
+        <!-- 네 모서리 -->
+        <use href="#flourish" x="22" y="22" width="92" height="92"/>
+        <g transform="translate(700 0) scale(-1 1)"><use href="#flourish" x="22" y="22" width="92" height="92"/></g>
+        <g transform="translate(0 400) scale(1 -1)"><use href="#flourish" x="22" y="22" width="92" height="92"/></g>
+        <g transform="translate(700 400) scale(-1 -1)"><use href="#flourish" x="22" y="22" width="92" height="92"/></g>
+      </symbol>
+    </defs>
+  </svg>
+
   <main class="stage" id="stage">
     <div class="halo" id="halo"></div>
 
@@ -21,9 +132,24 @@
     <div class="envelope-wrap" id="envWrap">
       <button class="envelope" id="envelope" type="button" aria-label="초대장의 봉인을 풀기" disabled>
         <span class="env-back"></span>
-        <span class="env-flap"></span>
-        <span class="env-front"></span>
-        <span class="seal" id="seal"><span class="seal-mark">✦</span></span>
+        <span class="env-front">
+          <svg class="deco" viewBox="0 0 700 400" preserveAspectRatio="none" aria-hidden="true"><use href="#envDeco"/></svg>
+        </span>
+        <span class="env-flap">
+          <svg class="deco" viewBox="0 0 700 400" preserveAspectRatio="none" aria-hidden="true"><use href="#envDeco"/></svg>
+        </span>
+
+        <!-- 붉은 밀랍 봉인 -->
+        <svg class="seal" id="seal" viewBox="-52 -52 104 104" aria-hidden="true">
+          <path fill="url(#sealGrad)" d="M45.9 0.0 L47.2 3.1 L45.4 6.0 L42.3 8.4 L40.1 10.7 L38.7 13.1 L36.9 15.3 L35.6 17.5 L36.0 20.8 L36.7 24.5 L35.4 27.2 L32.5 28.5 L29.8 29.8 L27.7 31.6 L25.4 33.1 L23.0 34.4 L21.4 37.0 L20.2 41.0 L18.1 43.8 L14.9 44.0 L11.6 43.2 L8.5 42.8 L5.5 42.0 L2.6 40.3 L0.0 39.7 L-2.7 41.5 L-5.7 43.4 L-8.6 43.1 L-11.1 41.5 L-13.6 40.1 L-16.1 38.8 L-18.0 36.5 L-19.9 34.5 L-23.0 34.4 L-27.1 35.3 L-30.6 34.9 L-32.7 32.7 L-34.5 30.2 L-36.0 27.7 L-36.4 24.3 L-35.7 20.6 L-36.3 17.9 L-38.9 16.1 L-41.5 14.1 L-42.3 11.3 L-42.5 8.5 L-42.9 5.6 L-42.3 2.8 L-40.1 0.0 L-38.7 -2.5 L-39.8 -5.2 L-42.1 -8.4 L-43.0 -11.5 L-42.8 -14.5 L-42.6 -17.6 L-41.5 -20.5 L-38.5 -22.2 L-34.9 -23.3 L-32.8 -25.2 L-32.2 -28.2 L-31.0 -31.0 L-29.0 -33.0 L-26.9 -35.1 L-24.8 -37.1 L-21.6 -37.5 L-17.8 -36.2 L-14.8 -35.7 L-12.7 -37.4 L-10.7 -39.8 L-8.3 -41.5 L-5.7 -43.3 L-3.0 -45.5 L-0.0 -46.3 L2.9 -44.3 L5.5 -41.9 L8.2 -41.2 L11.1 -41.6 L14.0 -41.3 L16.8 -40.7 L20.0 -40.6 L23.1 -40.0 L24.8 -37.1 L25.2 -32.9 L26.1 -29.8 L28.1 -28.1 L30.2 -26.5 L32.2 -24.7 L35.2 -23.5 L38.8 -22.4 L40.8 -20.1 L40.5 -16.8 L40.0 -13.6 L40.8 -10.9 L41.9 -8.3 L42.4 -5.6 L43.6 -2.9Z"/>
+          <path fill="none" stroke="rgba(255,196,196,.16)" stroke-width="1.2" transform="scale(.92)" d="M45.9 0.0 L47.2 3.1 L45.4 6.0 L42.3 8.4 L40.1 10.7 L38.7 13.1 L36.9 15.3 L35.6 17.5 L36.0 20.8 L36.7 24.5 L35.4 27.2 L32.5 28.5 L29.8 29.8 L27.7 31.6 L25.4 33.1 L23.0 34.4 L21.4 37.0 L20.2 41.0 L18.1 43.8 L14.9 44.0 L11.6 43.2 L8.5 42.8 L5.5 42.0 L2.6 40.3 L0.0 39.7 L-2.7 41.5 L-5.7 43.4 L-8.6 43.1 L-11.1 41.5 L-13.6 40.1 L-16.1 38.8 L-18.0 36.5 L-19.9 34.5 L-23.0 34.4 L-27.1 35.3 L-30.6 34.9 L-32.7 32.7 L-34.5 30.2 L-36.0 27.7 L-36.4 24.3 L-35.7 20.6 L-36.3 17.9 L-38.9 16.1 L-41.5 14.1 L-42.3 11.3 L-42.5 8.5 L-42.9 5.6 L-42.3 2.8 L-40.1 0.0 L-38.7 -2.5 L-39.8 -5.2 L-42.1 -8.4 L-43.0 -11.5 L-42.8 -14.5 L-42.6 -17.6 L-41.5 -20.5 L-38.5 -22.2 L-34.9 -23.3 L-32.8 -25.2 L-32.2 -28.2 L-31.0 -31.0 L-29.0 -33.0 L-26.9 -35.1 L-24.8 -37.1 L-21.6 -37.5 L-17.8 -36.2 L-14.8 -35.7 L-12.7 -37.4 L-10.7 -39.8 L-8.3 -41.5 L-5.7 -43.3 L-3.0 -45.5 L-0.0 -46.3 L2.9 -44.3 L5.5 -41.9 L8.2 -41.2 L11.1 -41.6 L14.0 -41.3 L16.8 -40.7 L20.0 -40.6 L23.1 -40.0 L24.8 -37.1 L25.2 -32.9 L26.1 -29.8 L28.1 -28.1 L30.2 -26.5 L32.2 -24.7 L35.2 -23.5 L38.8 -22.4 L40.8 -20.1 L40.5 -16.8 L40.0 -13.6 L40.8 -10.9 L41.9 -8.3 L42.4 -5.6 L43.6 -2.9Z"/>
+          <circle r="31" fill="rgba(36,5,11,.28)" stroke="rgba(232,207,147,.45)" stroke-width="1.3"/>
+          <circle r="28" fill="none" stroke="rgba(255,200,200,.12)" stroke-width=".8"/>
+          <!-- 나침반 별 문장 -->
+          <path transform="translate(.8 1)" fill="rgba(20,2,6,.55)" d="M0.0 -22 L1.6 -4 L8.4 -8.4 L3.9 -1.6 L22 0.0 L3.9 1.6 L8.4 8.4 L1.6 4 L0.0 22 L-1.6 4 L-8.4 8.4 L-3.9 1.6 L-22 0.0 L-3.9 -1.6 L-8.4 -8.4 L-1.6 -4Z"/>
+          <path fill="url(#goldGrad)" d="M0.0 -22 L1.6 -4 L8.4 -8.4 L3.9 -1.6 L22 0.0 L3.9 1.6 L8.4 8.4 L1.6 4 L0.0 22 L-1.6 4 L-8.4 8.4 L-3.9 1.6 L-22 0.0 L-3.9 -1.6 L-8.4 -8.4 L-1.6 -4Z"/>
+          <circle r="1.8" fill="#6a1a26"/>
+        </svg>
       </button>
     </div>
 
@@ -31,8 +157,15 @@
 
     <!-- 펼쳐진 편지 -->
     <article class="letter" id="letter" aria-hidden="true">
+      <svg class="letter-tex" aria-hidden="true"><rect width="100%" height="100%" fill="url(#floralTex)"/></svg>
+      <div class="letter-frame"></div>
+      <svg class="corner tl" viewBox="0 0 70 70" aria-hidden="true"><use href="#flourish"/></svg>
+      <svg class="corner tr" viewBox="0 0 70 70" aria-hidden="true"><use href="#flourish"/></svg>
+      <svg class="corner bl" viewBox="0 0 70 70" aria-hidden="true"><use href="#flourish"/></svg>
+      <svg class="corner br" viewBox="0 0 70 70" aria-hidden="true"><use href="#flourish"/></svg>
+
       <div class="letter-scroll">
-        <p class="l letter-mark">✦</p>
+        <svg class="l letter-fleur" viewBox="0 0 24 24" aria-hidden="true"><use href="#fleur" width="24" height="24"/></svg>
         <h1 class="l letter-title">INVITATION</h1>
         <p class="l letter-subtitle">초 대 장</p>
         <div class="l rule letter-rule"><i>◆</i></div>
