@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#050403">
+  <meta name="theme-color" content="#070405">
   <title>로비</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,65 +14,154 @@
 <body class="page-main">
   <div class="veil is-on"></div>
 
-  <!-- 고딕 창 (한 번 정의해서 여러 번 재사용) -->
+  <!-- ============ 창 도안 (한 번 정의해서 여러 번 재사용) ============ -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <linearGradient id="winGlow" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#fff6de"/>
-        <stop offset=".55" stop-color="#f0cf92"/>
-        <stop offset="1" stop-color="#b98b4a"/>
+        <stop offset="0" stop-color="#fff8e6"/>
+        <stop offset=".55" stop-color="#f3d9a0"/>
+        <stop offset="1" stop-color="#c79c5c"/>
       </linearGradient>
       <pattern id="lattice" width="12" height="16" patternUnits="userSpaceOnUse">
-        <path d="M0 0 L12 16 M12 0 L0 16" stroke="#120e08" stroke-width=".9" fill="none"/>
+        <path d="M0 0 L12 16 M12 0 L0 16" stroke="#17110a" stroke-width=".9" fill="none"/>
       </pattern>
+      <linearGradient id="glassSheen" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".28"/>
+        <stop offset=".6" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
+      <clipPath id="lancetClip"><path d="M13 206 V84 Q13 40 50 14 Q87 40 87 84 V206Z"/></clipPath>
+
+      <!-- 가운데 큰 창: 하얗게 빛나는 격자창 (레퍼런스 2) -->
       <symbol id="gothic-window" viewBox="0 0 100 210">
-        <!-- 석조 틀 -->
-        <path d="M2 210 V82 Q2 28 50 2 Q98 28 98 82 V210 Z" fill="#14100b" stroke="#6b5530" stroke-width="1"/>
-        <path d="M8 210 V84 Q8 36 50 12 Q92 36 92 84 V210 Z" fill="#0b0907" stroke="#3b2f1c" stroke-width=".8"/>
-        <!-- 유리 -->
+        <path d="M2 210 V82 Q2 28 50 2 Q98 28 98 82 V210 Z" fill="#17120c" stroke="#7a6238" stroke-width="1"/>
+        <path d="M8 210 V84 Q8 36 50 12 Q92 36 92 84 V210 Z" fill="#0b0907" stroke="#4a3a22" stroke-width=".8"/>
         <path d="M13 206 V85 Q13 42 50 20 Q87 42 87 85 V206 Z" fill="url(#winGlow)"/>
         <path d="M13 206 V85 Q13 42 50 20 Q87 42 87 85 V206 Z" fill="url(#lattice)"/>
-        <!-- 세로 문설주 -->
-        <path d="M50 20 V206 M31.5 206 V70 M68.5 206 V70" stroke="#120e08" stroke-width="2.2" fill="none"/>
-        <!-- 상단 장미창 -->
+        <path d="M50 20 V206 M31.5 206 V70 M68.5 206 V70" stroke="#17110a" stroke-width="2.2" fill="none"/>
         <circle cx="50" cy="52" r="9" fill="#0b0907"/>
         <circle cx="50" cy="52" r="6.4" fill="url(#winGlow)"/>
-        <path d="M50 45.6 V58.4 M43.6 52 H56.4 M45.5 47.5 L54.5 56.5 M54.5 47.5 L45.5 56.5" stroke="#120e08" stroke-width="1" fill="none"/>
-        <!-- 하단 창턱 -->
+        <path d="M50 45.6 V58.4 M43.6 52 H56.4 M45.5 47.5 L54.5 56.5 M54.5 47.5 L45.5 56.5" stroke="#17110a" stroke-width="1" fill="none"/>
         <rect x="0" y="204" width="100" height="6" fill="#1a140c"/>
+      </symbol>
+
+      <!-- 양옆 창: 스테인드글라스 (레퍼런스 1) -->
+      <symbol id="lancet" viewBox="0 0 100 210">
+        <path d="M5 210 V82 Q5 26 50 3 Q95 26 95 82 V210 Z" fill="#1a140d" stroke="#6b5732" stroke-width="1"/>
+        <path d="M9 210 V84 Q9 34 50 9 Q91 34 91 84 V210 Z" fill="#0a0806"/>
+        <g clip-path="url(#lancetClip)">
+          <rect x="13" y="14" width="74" height="192" fill="#2a1a0c"/>
+          <rect x="13.0" y="14.0" width="18.7" height="16.2" fill="#c98a2e" opacity="0.76"/>
+          <rect x="31.5" y="14.0" width="18.7" height="16.2" fill="#2a4a86" opacity="0.74"/>
+          <rect x="50.0" y="14.0" width="18.7" height="16.2" fill="#9e2230" opacity="0.82"/>
+          <rect x="68.5" y="14.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.86"/>
+          <rect x="13.0" y="30.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.84"/>
+          <rect x="31.5" y="30.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.75"/>
+          <rect x="50.0" y="30.0" width="18.7" height="16.2" fill="#f3dfae" opacity="0.95"/>
+          <rect x="68.5" y="30.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.78"/>
+          <rect x="13.0" y="46.0" width="18.7" height="16.2" fill="#2a4a86" opacity="0.99"/>
+          <rect x="31.5" y="46.0" width="18.7" height="16.2" fill="#9e2230" opacity="0.83"/>
+          <rect x="50.0" y="46.0" width="18.7" height="16.2" fill="#b4602a" opacity="0.73"/>
+          <rect x="68.5" y="46.0" width="18.7" height="16.2" fill="#5b3a85" opacity="0.8"/>
+          <rect x="13.0" y="62.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.75"/>
+          <rect x="31.5" y="62.0" width="18.7" height="16.2" fill="#c98a2e" opacity="0.95"/>
+          <rect x="50.0" y="62.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.88"/>
+          <rect x="68.5" y="62.0" width="18.7" height="16.2" fill="#2a4a86" opacity="0.82"/>
+          <rect x="13.0" y="78.0" width="18.7" height="16.2" fill="#9e2230" opacity="0.74"/>
+          <rect x="31.5" y="78.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.78"/>
+          <rect x="50.0" y="78.0" width="18.7" height="16.2" fill="#2a4a86" opacity="0.84"/>
+          <rect x="68.5" y="78.0" width="18.7" height="16.2" fill="#c98a2e" opacity="0.88"/>
+          <rect x="13.0" y="94.0" width="18.7" height="16.2" fill="#f3dfae" opacity="0.8"/>
+          <rect x="31.5" y="94.0" width="18.7" height="16.2" fill="#2a6a6a" opacity="0.92"/>
+          <rect x="50.0" y="94.0" width="18.7" height="16.2" fill="#c98a2e" opacity="0.88"/>
+          <rect x="68.5" y="94.0" width="18.7" height="16.2" fill="#9e2230" opacity="0.97"/>
+          <rect x="13.0" y="110.0" width="18.7" height="16.2" fill="#2a4a86" opacity="0.8"/>
+          <rect x="31.5" y="110.0" width="18.7" height="16.2" fill="#b4602a" opacity="0.75"/>
+          <rect x="50.0" y="110.0" width="18.7" height="16.2" fill="#f3dfae" opacity="0.93"/>
+          <rect x="68.5" y="110.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.86"/>
+          <rect x="13.0" y="126.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.91"/>
+          <rect x="31.5" y="126.0" width="18.7" height="16.2" fill="#2a6a6a" opacity="0.88"/>
+          <rect x="50.0" y="126.0" width="18.7" height="16.2" fill="#5b3a85" opacity="0.81"/>
+          <rect x="68.5" y="126.0" width="18.7" height="16.2" fill="#2a4a86" opacity="0.89"/>
+          <rect x="13.0" y="142.0" width="18.7" height="16.2" fill="#9e2230" opacity="0.85"/>
+          <rect x="31.5" y="142.0" width="18.7" height="16.2" fill="#5b3a85" opacity="0.98"/>
+          <rect x="50.0" y="142.0" width="18.7" height="16.2" fill="#f3dfae" opacity="0.91"/>
+          <rect x="68.5" y="142.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.92"/>
+          <rect x="13.0" y="158.0" width="18.7" height="16.2" fill="#2a4a86" opacity="1.0"/>
+          <rect x="31.5" y="158.0" width="18.7" height="16.2" fill="#2a6a6a" opacity="0.8"/>
+          <rect x="50.0" y="158.0" width="18.7" height="16.2" fill="#f3dfae" opacity="0.91"/>
+          <rect x="68.5" y="158.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.85"/>
+          <rect x="13.0" y="174.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.75"/>
+          <rect x="31.5" y="174.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.94"/>
+          <rect x="50.0" y="174.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.79"/>
+          <rect x="68.5" y="174.0" width="18.7" height="16.2" fill="#f3dfae" opacity="0.96"/>
+          <rect x="13.0" y="190.0" width="18.7" height="16.2" fill="#e0a246" opacity="0.85"/>
+          <rect x="31.5" y="190.0" width="18.7" height="16.2" fill="#9e2230" opacity="0.97"/>
+          <rect x="50.0" y="190.0" width="18.7" height="16.2" fill="#2a6a6a" opacity="0.96"/>
+          <rect x="68.5" y="190.0" width="18.7" height="16.2" fill="#c98a2e" opacity="0.84"/>
+          <rect x="13" y="14" width="74" height="192" fill="url(#glassSheen)"/>
+        </g>
+        <path d="M13 30.0 H87 M13 46.0 H87 M13 62.0 H87 M13 78.0 H87 M13 94.0 H87 M13 110.0 H87 M13 126.0 H87 M13 142.0 H87 M13 158.0 H87 M13 174.0 H87 M13 190.0 H87 M31.5 14 V206 M50.0 14 V206 M68.5 14 V206" stroke="#0a0705" stroke-width="1.3" fill="none" clip-path="url(#lancetClip)"/>
+        <path d="M50 14 V206" stroke="#0a0705" stroke-width="2.4" fill="none"/>
+        <circle cx="50" cy="50" r="8" fill="#f2c875" opacity=".9"/>
+        <path d="M50 42 V58 M42 50 H58" stroke="#0a0705" stroke-width="1.2" fill="none"/>
+        <rect x="2" y="204" width="96" height="6" fill="#1a140c"/>
       </symbol>
     </defs>
   </svg>
 
-  <!-- 배경 공간: 건축 + 빛 -->
+  <!-- ============ 배경 공간 ============ -->
   <div class="scene" id="scene" aria-hidden="true">
     <div class="wall"></div>
 
-    <svg class="vault" viewBox="0 0 1000 320" preserveAspectRatio="none">
-      <g fill="none" stroke="#2a2218" stroke-width="2">
-        <path d="M0 320 Q160 120 500 0"/>
-        <path d="M1000 320 Q840 120 500 0"/>
-        <path d="M0 220 Q220 90 500 0" opacity=".6"/>
-        <path d="M1000 220 Q780 90 500 0" opacity=".6"/>
-      </g>
-    </svg>
-
-    <div class="windows">
-      <svg class="win"><use href="#gothic-window"/></svg>
-      <svg class="win"><use href="#gothic-window"/></svg>
-      <svg class="win win-center"><use href="#gothic-window"/></svg>
-      <svg class="win"><use href="#gothic-window"/></svg>
-      <svg class="win"><use href="#gothic-window"/></svg>
+    <!-- 먼 벽: 창문 -->
+    <div class="layer layer-far" data-depth="7">
+      <div class="windows">
+        <svg class="win side"><use href="#lancet"/></svg>
+        <svg class="win side"><use href="#lancet"/></svg>
+        <svg class="win center"><use href="#gothic-window"/></svg>
+        <svg class="win side"><use href="#lancet"/></svg>
+        <svg class="win side"><use href="#lancet"/></svg>
+      </div>
+      <div class="win-bloom"></div>
     </div>
 
-    <div class="beam beam-a"></div>
-    <div class="beam beam-b"></div>
-    <div class="beam beam-c"></div>
+    <!-- 빛: 가운데 창에서 퍼지는 빛살 + 왼쪽 위에서 비스듬히 쏟아지는 빛줄기 -->
+    <div class="layer layer-mid" data-depth="14">
+      <div class="rays"></div>
+      <div class="shaft shaft-a"></div>
+      <div class="shaft shaft-b"></div>
+      <div class="shaft shaft-c"></div>
+    </div>
 
-    <div class="pillar pillar-l"></div>
-    <div class="pillar pillar-r"></div>
-    <div class="floor"></div>
+    <div class="floor"><div class="pool"></div></div>
+
+    <!-- 가까운 벽: 어두운 석조 아치 틀 -->
+    <div class="layer layer-near" data-depth="22">
+      <svg class="frame" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="stone" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#241b14"/>
+            <stop offset=".45" stop-color="#0c0807"/>
+            <stop offset="1" stop-color="#040202"/>
+          </linearGradient>
+          <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ffe2aa" stop-opacity=".6"/>
+            <stop offset=".5" stop-color="#ffe2aa" stop-opacity=".14"/>
+            <stop offset="1" stop-color="#ffe2aa" stop-opacity=".04"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#stone)" fill-rule="evenodd"
+              d="M-6 -6 H106 V106 H-6Z M9 106 V48 Q9 14 50 2.5 Q91 14 91 48 V106Z"/>
+        <path d="M9 106 V48 Q9 14 50 2.5 Q91 14 91 48 V106" fill="none" stroke="url(#rim)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        <path d="M6.2 106 V47 Q6.2 10 50 -1 Q93.8 10 93.8 47 V106" fill="none" stroke="rgba(150,115,65,.22)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+        <path d="M3.4 106 V46 Q3.4 6 50 -4.5 Q96.6 6 96.6 46 V106" fill="none" stroke="rgba(150,115,65,.1)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+
+    <div class="fog fog-a"></div>
+    <div class="fog fog-b"></div>
     <div class="vignette"></div>
+    <div class="grain"></div>
   </div>
 
   <a class="replay" href="index.html" aria-label="초대장 다시 보기">✦</a>

@@ -17,6 +17,26 @@
   /* 배경 먼지 */
   SITE.dust.start({ count: window.innerWidth < 640 ? 45 : 95 });
 
+  /* 배경 깊이감: 마우스를 움직이면 창(먼 곳) → 빛 → 아치(가까운 곳) 순으로 다르게 움직임
+     (마우스가 있는 기기에서만, 모션 줄이기 설정이면 꺼짐) */
+  if (matchMedia('(hover: hover)').matches && !SITE.reduceMotion) {
+    const layers = Array.from(document.querySelectorAll('.layer[data-depth]'));
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    window.addEventListener('mousemove', (e) => {
+      tx = e.clientX / window.innerWidth - 0.5;
+      ty = e.clientY / window.innerHeight - 0.5;
+    });
+    (function tick() {
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      layers.forEach((l) => {
+        const d = Number(l.dataset.depth) || 0;
+        l.style.transform = 'translate3d(' + (-cx * d).toFixed(2) + 'px,' + (-cy * d * 0.6).toFixed(2) + 'px,0)';
+      });
+      requestAnimationFrame(tick);
+    })();
+  }
+
   /* 타이틀 주변에 가끔 떠오르는 금빛 입자 */
   const titleBlock = document.getElementById('titleBlock');
   function spark() {
